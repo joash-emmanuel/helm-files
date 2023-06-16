@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-app
+  namespace: dev
+  labels:
+    app: frontend-app
+  annotations:
+spec:
+  selector:
+    matchLabels:
+      app: frontend-app
+  replicas: 1 
+  template:
+    metadata:
+      labels:
+        app: frontend-app
+    spec:
+      containers:
+      - name: frontend
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+        ports:
+            - containerPort: 80
+        resources:
+          limits:
+            memory: "1000Mi"
+            cpu: "250m"
+          requests:
+            memory: "1000Mi"
+            cpu: "250m"    ##If I request 512 Mi, the fargate node will request another 250 Mi for the init container
+
