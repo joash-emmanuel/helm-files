@@ -1,7 +1,7 @@
 
 
 image:
-  repository: 331879450537.dkr.ecr.us-west-2.amazonaws.com/frontend
+  repository: account-ID.dkr.ecr.us-west-2.amazonaws.com/frontend
   tag: 1.2
   pullPolicy: IfNotPresent
 
